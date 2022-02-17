@@ -2,6 +2,7 @@ package com.spring.example.springdemo;
 
 import com.spring.example.springdemo.libraries.WebDriver;
 import com.spring.example.springdemo.pages.MainPage;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,14 @@ class SpringdemoApplicationTests {
 	private List<String> listOfBrowsers;
 
 	@Test
-	void contextLoads(){
+	@SneakyThrows
+	void contextLoads()  {
 		log.info("Test run");
 		webDriver.getFFdrive().get(thisUrl);
 
 		String title = webDriver.getFFdrive().getTitle();
 
+		Thread.sleep(5000);
 		assertThat(title).contains("Google");
 
 		log.info(thisUrl);
