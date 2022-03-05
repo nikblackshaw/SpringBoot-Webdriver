@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 
 import java.util.List;
 
@@ -29,13 +30,17 @@ class SpringdemoApplicationTests {
 	@Value("${app.url}")
 	private String thisUrl;
 
+	@Value("${pr.name}")
+	private String prname;
+
 	@Value("chrome,firefox,edge")
 	private List<String> listOfBrowsers;
 
 	@Test
 	@SneakyThrows
 	void contextLoads()  {
-		log.info("Test run");
+		log.info("[INFO] Test run started for URL " + thisUrl);
+		log.info("[INFO] pr name " + prname);
 		webDriver.getFFdrive().get(thisUrl);
 
 		String title = webDriver.getFFdrive().getTitle();
